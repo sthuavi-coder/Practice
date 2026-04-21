@@ -1,23 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Practice</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
     <nav>
-        <div class="container">
-            <div class="row">
-                <div class="nav__img">
-                    <img src="" alt="">
-                </div>
-                <div class="nav__links"></div>
-            </div>
+      <div class="container nav__container">
+        <div class="row nav__row">
+          <div class="nav__img--wrapper">
+            <img
+              class="nav__img"
+              src="./Assets Practice/undraw_happy-music_na4p.svg"
+              alt=""
+            />
+          </div>
+          <ul class="nav__links">
+            <li><a class="nav__link" href="#">Home</a></li>
+            <li><a class="nav__link" href="#">Search</a></li>
+            <li><a class="nav__link" href="#">Contact</a></li>
+            <li><a class="nav__link" href="#">About</a></li>
+          </ul>
         </div>
+      </div>
     </nav>
-    
-</body>
+
+    <main>
+      <section id="title">
+        <div class="container title__container">
+          <div class="row title__row">
+            <div class="title__header">
+              <h1>My Practice Search Site</h1>
+              <p class="title__para">
+                Welcome to my practice search site!
+              </p>
+            </div>
+            <div class="title__search">
+              <div class="title__search--input">
+                <input type="text" id="searchInput" placeholder="Search for..."/>
+                <button id="searchBtn">Search</button>
+              </div>
+              <div class="title__search--filter">
+                <label for="music">Filter by User:</label>
+                <select name="music">
+                  <option value="" disabled selected>Users</option>
+                  <option value="rock">Rock</option>
+                  <option value="pop">Pop</option>
+                  <option value="country">Country</option>
+                  <option value="jazz">Jazz</option>
+                </select>
+              </div>
+            </div>
+            <div class="results">
+              <div class="results__container">
+                <div class="results__card">
+                    <!-- <h3>name</h3>
+                    <p>email</p>
+                    <p>phone</p>
+                    <p>website</p> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer__container">
+        <div class="footer__img--wrapper">
+          <img
+            class="footer__img"
+            src="./Assets Practice/undraw_contemplating_v4x1.svg"
+            alt=""
+          />
+        </div>
+        <p class="footer__para">
+          © 2023 My Practice Search Site. All rights reserved.
+        </p>
+        <ul class="footer__links">
+          <li><a class="footer__link" href="#">Home</a></li>
+          <li><a class="footer__link" href="#">Search</a></li>
+          <li><a class="footer__link" href="#">About</a></li>
+          <li><a class="footer__link" href="#">Contact</a></li>
+        </ul>
+      </div>
+    </footer>
+  </body>
 </html>

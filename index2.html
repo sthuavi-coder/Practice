@@ -1,0 +1,106 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoonacular</title>
+</head>
+<body>
+    <div class="container">
+    <h1>Spoonacular Recipe Search</h1>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search for delicious recipes...">
+      <button id="searchButton">Search</button>
+    </div>
+
+    <div id="results"></div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+const searchButton = document.getElementById('searchButton');
+const resultsDiv = document.getElementById('results');
+
+// When the button is clicked, run the search function
+searchButton.addEventListener('click', searchRecipes);
+
+// when the user presses "Enter" in the input, also run the search function
+searchInput.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        searchRecipes();
+    }
+});
+
+function searchRecipes() {
+  const query = searchInput.value.trim();           // get the search term from input
+  if (!query) {                                     // if the query is empty, do nothing
+    alert('Please enter a search term.');
+    return;
+  }
+
+  // Construct the API URL with query and API key
+  const apiKey = '9612e95f89384378a3c98679b2f61ccf';  // <-- replace with your actual Spoonacular API key
+  const apiUrl = `https://api.spoonacular.com/recipes/complexSearch?query=${encodeURIComponent(query)}&number=5&addRecipeNutrition=true&apiKey=${apiKey}`;
+
+  // Clear any previous results
+  resultsDiv.innerHTML = '<p>Searching for recipes...</p>';
+
+  // Call the Spoonacular API
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      // Clear the placeholder text
+      resultsDiv.innerHTML = '';
+      if (!data.results || data.results.length === 0) {
+        resultsDiv.innerHTML = '<div class="no-results">No recipes found. Try a different search term!</div>';
+        return;
+      }
+
+      // Loop through each recipe result
+      data.results.forEach(recipe => {
+        // Extract data we need
+        const title = recipe.title;
+        const image = recipe.image;
+
+        // The nutrition info is an array of nutrient objects. Find the ones for Calories, Protein, Fat, Carbs:
+        let calories = '', protein = '', fat = '', carbs = '';
+        if (recipe.nutrition && recipe.nutrition.nutrients) {
+          const nutrients = recipe.nutrition.nutrients;
+          const calInfo = nutrients.find(n => n.name === 'Calories');
+          const proteinInfo = nutrients.find(n => n.name === 'Protein');
+          const fatInfo = nutrients.find(n => n.name === 'Fat');
+          const carbsInfo = nutrients.find(n => n.name === 'Carbohydrates');
+          if (calInfo)    calories = Math.round(calInfo.amount) + ' ' + calInfo.unit;
+          if (proteinInfo) protein = Math.round(proteinInfo.amount) + ' ' + proteinInfo.unit;
+          if (fatInfo)     fat = Math.round(fatInfo.amount) + ' ' + fatInfo.unit;
+          if (carbsInfo)   carbs = Math.round(carbsInfo.amount) + ' ' + carbsInfo.unit;
+        }
+
+        // Create a container div for this recipe
+        const recipeDiv = document.createElement('div');
+        recipeDiv.className = 'recipe';  // for potential styling
+
+        // Build the inner HTML for the recipe (image, title, and nutrition info)
+        recipeDiv.innerHTML = `
+          <h3>${title}</h3>
+          <img src="${image}" alt="${title}">
+          <p><strong>Calories:</strong> ${calories}</p>
+          <p><strong>Carbs:</strong> ${carbs}</p>
+          <p><strong>Protein:</strong> ${protein}</p>
+          <p><strong>Fat:</strong> ${fat}</p>
+        `;
+
+        // Append this recipe's HTML to the results container
+        resultsDiv.appendChild(recipeDiv);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching recipes:', error);
+      resultsDiv.innerHTML = '<div class="error">An error occurred while fetching recipes. Please try again.</div>';
+    });
+}
+  </script>
+
+
+</body>
+</html> -->
